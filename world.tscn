@@ -38,6 +38,13 @@ offset_right = 91.0
 offset_bottom = 528.0
 text = "target fps"
 
+[node name="Label2" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 532.0
+offset_right = 93.0
+offset_bottom = 558.0
+text = "manual poll in _physics_process"
+
 [node name="LabelTargetFPS" type="Label" parent="."]
 offset_left = 583.0
 offset_top = 502.0
@@ -53,3 +60,9 @@ offset_right = 690.0
 offset_bottom = 65.0
 text = "server
 "
+
+[node name="CheckButtonManualPoll" type="CheckButton" parent="."]
+offset_left = 277.0
+offset_top = 531.0
+offset_right = 321.0
+offset_bottom = 562.0

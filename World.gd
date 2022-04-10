@@ -33,7 +33,10 @@ func _ready():
     multiplayer.set_multiplayer_peer(peer)
 
     $HSlider.connect("value_changed", _set_target_fps)
-    _set_target_fps(60)
+    _set_target_fps($HSlider.value)
+
+    $CheckButtonManualPoll.connect("toggled", _set_manual_poll)
+    _set_manual_poll($CheckButtonManualPoll.button_pressed)
 
 
 func _physics_process(delta):
@@ -42,6 +45,9 @@ func _physics_process(delta):
 
 
 func _physics_process_rpc_method(delta):
+    if not get_tree().multiplayer_poll:
+        multiplayer.poll()
+
     if is_multiplayer_authority():
         # should have already gotten some client input via rpc and stuck it in a var
 
@@ -150,3 +156,7 @@ func recieve_from_server_udp() -> int:
 func _set_target_fps(target):
     Engine.target_fps = target
     $LabelTargetFPS.text = "%s" % Engine.target_fps
+
+
+func _set_manual_poll(manual : bool):
+    get_tree().multiplayer_poll = !manual
